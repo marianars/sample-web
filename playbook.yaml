@@ -1,2 +1,8 @@
-code here
-
+- name: Ansible Copy WAR File Local to Remote
+  hosts: 44.212.35.192
+  tasks:
+    - name: copying file with playbook
+      become: true
+      copy:
+        src: ~/target/sample-web.war
+        dest: /opt/apache-tomcat-9.0.74/webapps
