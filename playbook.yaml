@@ -1,5 +1,5 @@
 - name: Ansible Copy WAR File Local to Remote
-  hosts: 44.212.35.192
+  hosts: 34.230.44.252
   tasks:
     - name: copying file with playbook
       become: true
