@@ -18,6 +18,7 @@
     - name: Set permissions
       file:
         path: "/opt/apache-tomcat-9.0.74"
+        recurse: yes
         state: directory
         owner: tomcat
         group: tomcat
