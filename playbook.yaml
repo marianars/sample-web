@@ -1,8 +1,45 @@
-- name: Ansible Copy WAR File Local to Remote
+---
+- name: Install tomcat
   hosts: 34.230.44.252
+  become: true
+  
   tasks:
+    - name: Download package Apache Tomcat 
+      get_url:
+        url: "https://mirror.checkdomain.de/apache/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz"
+        dest: "/tmp/apache-tomcat-9.0.74.tar.gz"
+    
+    - name: Extract file apache-tomcat-9.0.74.tar.gz
+      unarchive:
+        src: "/tmp/apache-tomcat-9.0.74.tar.gz"
+        dest: "/opt/"
+        remote_src: yes
+        copy: no
+    
+    - name: Set permissions
+      file:
+        path: "/opt/apache-tomcat-9.0.74"
+        state: directory
+        owner: tomcat
+        group: tomcat
+        mode: 0755
+    
+    - name: Start service
+      systemd:
+        name: tomcat
+        state: started
+        enabled: true
+        
     - name: copying file with playbook
       become: true
       copy:
         src: ./target/sample-web.war
         dest: /opt/apache-tomcat-9.0.74/webapps
+    
+    - name: Restart  Tomcat
+      systemd:
+        name: tomcat
+        state: restarted
+
+
+
