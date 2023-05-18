@@ -23,6 +23,9 @@
         group: tomcat
         mode: 0755
 
+    - name: Update exec permissions to scripts
+      command: chmod +x /opt/apache-tomcat-9.0.74/*.sh
+
     - name: copying file with playbook
       become: true
       copy:
