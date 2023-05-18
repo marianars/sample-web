@@ -14,7 +14,6 @@
         src: "/tmp/apache-tomcat-9.0.74.tar.gz"
         dest: "/opt/"
         remote_src: yes
-        copy: no
     
     - name: Set permissions
       file:
