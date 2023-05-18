@@ -22,6 +22,12 @@
         owner: tomcat
         group: tomcat
         mode: 0755
+
+    - name: copying file with playbook
+      become: true
+      copy:
+        src: ./target/sample-web.war
+        dest: /opt/apache-tomcat-9.0.74/webapps
     
     - name: Start service
       systemd:
@@ -29,11 +35,6 @@
         state: started
         enabled: true
         
-    - name: copying file with playbook
-      become: true
-      copy:
-        src: ./target/sample-web.war
-        dest: /opt/apache-tomcat-9.0.74/webapps
     
 
 
