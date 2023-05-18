@@ -35,10 +35,7 @@
         src: ./target/sample-web.war
         dest: /opt/apache-tomcat-9.0.74/webapps
     
-    - name: Restart  Tomcat
-      systemd:
-        name: tomcat
-        state: restarted
+
 
 
 
